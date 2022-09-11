@@ -3,7 +3,7 @@ import { shippingDetails, shippinginfo } from '../../controllers/userController.
 const router = express.Router();
 
 
-router.get('/test', (req, res) => {
+router.get('/tests', (req, res) => {
   res.json({ msg: 'user works'})
 })
 
