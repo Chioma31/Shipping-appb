@@ -4,8 +4,7 @@
   "description": "Backend to shipping app",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "build": "node server.js"
+    "start": "nodemon server.js"
   },
   "author": "Chioma",
   "license": "MIT",
