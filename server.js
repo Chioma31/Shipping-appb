@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import bodyParser from "body-parser";
 import connectDB from './config/connectDB.js';
 import users from './routes/api/user.js'
+import cors from 'cors';
 
 dotenv.config()
 
@@ -10,6 +11,9 @@ connectDB()
 
 
 const app = express() 
+
+app.use(cors({ origin: '*' }))
+
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
