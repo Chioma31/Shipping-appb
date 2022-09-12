@@ -3,10 +3,11 @@ import random from 'randomstring';
 import trackingIDEmail from './mail.js';
 
 
- const shippingDetails = (req, res) => {
+ const shippingDetails = async (req, res) => {
   try {
     
-    const { name, email, country, city, zipCode, shippingAddress, content, phoneNumber, amountPaid } =  req.body
+    console.log(req.body.data)
+    const { name, email, country, city, zipCode, shippingAddress, content, phoneNumber, amountPaid } =  req.body.data
 
     const trackingId = random.generate({ length: 12, charset: 'alphanumeric', capitalization: 'uppercase' })
 
@@ -23,7 +24,7 @@ import trackingIDEmail from './mail.js';
       trackingId,
     })
 
-     newUser.save()
+     await newUser.save()
 
     .then(async () => {
       const send = User.findOne({ trackingId })
@@ -32,7 +33,7 @@ import trackingIDEmail from './mail.js';
       } else {
         const { email }  = newUser                                          
         trackingIDEmail(trackingId, email)
-        .then((email) => (console.log("Email not sent", email )))
+        .then((email) => (console.log("Email sent", email )))
         .catch((error) => (console.log(error.message)))
       }
     }).catch((error) => {
