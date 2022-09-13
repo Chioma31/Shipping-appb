@@ -3,6 +3,8 @@ import bcrypt from 'bcryptjs'
 import jwt  from 'jsonwebtoken'
 import validateLoginInput  from '../validation/login.js'
 
+const secret = process.env.SECRET_KEY
+
 
 const register = (req, res) => {
 
@@ -72,10 +74,10 @@ const login = (req, res) => {
         } // Payload
 
         // Sign token
-        jwt.sign(payload, { expiresIn: 7200 }, (err, token) => {
+        jwt.sign(payload, secret, { expiresIn: 7200 }, (err, token) => {
           res.json({
             success: true,
-            token: 'Bearer ',
+            token: 'Bearer '+ token,
             data: Admin,
           })
         })
