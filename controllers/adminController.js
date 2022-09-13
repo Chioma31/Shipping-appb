@@ -76,7 +76,7 @@ const login = (req, res) => {
           res.json({
             success: true,
             token: 'Bearer ',
-            data: admin,
+            data: Admin,
           })
         })
       } else {
