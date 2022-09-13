@@ -8,7 +8,7 @@ router.get('/tests', (req, res) => {
 
 router.post('/', register)
 
-router.get('/', login)
+router.post('/login', login)
 
 
 export default router
