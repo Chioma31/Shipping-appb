@@ -28,6 +28,7 @@ import trackingIDEmail from './mail.js';
 
     .then(async () => {
       const send = User.findOne({ trackingId })
+      console.log(trackingId)
       if (!User) {
         res.status(404).json({ message: 'Not found' })
       } else {
