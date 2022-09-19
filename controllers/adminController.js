@@ -2,6 +2,7 @@ import Admin from '../Model/adminModel.js';
 import bcrypt from 'bcryptjs'
 import jwt  from 'jsonwebtoken'
 import validateLoginInput  from '../validation/login.js'
+import User from '../Model/userModel.js';
 
 const secret = process.env.SECRET_KEY
 
@@ -88,6 +89,59 @@ const login = (req, res) => {
     })
   })
 }
+
+const deleteUser = async (req, res) => {
+
+  const user = await User.deleteOne(req.params.id)
+    
+  if (user) {
+
+
+      res.json({message: 'user removed'})
+
+   
+    }else {
+    res.status (404)
+    throw new error ('user not found')
+  }
+}
+
+const getUsers = async (req, res) => {
+
+  const users = await User.find({})
+  if (users) {
+    res.json(users)
+    
+  }else {
+    res.status (404)
+    throw new error ('users not found')
+  }
+}
+
+const progress = async (req, res) => {
+  const id = req.params.trackingId;
+  const updates = {} // empty object to allow for specifying of fields to be updated in the object, instead of updating the whole object everytime
+
+  // for(const ops of req.body) {
+  //   updates[ops.propName] = ops.value;
+  // }
+  if(req.body.progress) updates.progress = req.body.progress;
+  //Mongoose update method that updates the data by using it's id and uses the data from 'updates' to $set to replace the value in the field
+  User.updateOne({trackingId: id}, {$set: updates},  { new: true })
+  .exec()
+  .then(result => {
+    res.status(200).json({
+      message: "Updated successfully",
+      data: result
+    })
+  })
+  .catch(error => {
+    console.error(error)
+    res.status(500).json({
+      error
+    })
+  })
+}
       
     
-export { register, login} 
+export { register, login, deleteUser, getUsers, progress} 

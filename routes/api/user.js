@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import { shippingDetails, shippinginfo } from '../../controllers/userController.js'
+import { progressSet, shippingDetails, shippinginfo } from '../../controllers/userController.js'
 const router = express.Router();
 
 
@@ -11,5 +11,7 @@ router.get('/tests', (req, res) => {
 router.post('/', shippingDetails)
 
 router.get('/:trackingId', shippinginfo)
+
+router.get('/progress/:trackingId', progressSet)
 
 export default router

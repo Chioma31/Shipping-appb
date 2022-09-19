@@ -39,6 +39,11 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  progress: {
+    type: Number,
+    default: 0,
+    required:true
+  },
   trackingId: {
     type: String,
   },

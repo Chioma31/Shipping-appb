@@ -24,6 +24,10 @@ import trackingIDEmail from './mail.js';
       trackingId,
     })
 
+    // const newTracking = new Tracking({
+    //   trackingId
+    // })
+
      await newUser.save()
 
     .then(async () => {
@@ -77,4 +81,37 @@ const shippinginfo = async (req, res) => {
   }
 }
 
-export { shippingDetails,shippinginfo } 
+const progress = async (req, res) => {
+
+  const user = await User.findById(req.params.id)
+    
+  if (User) {
+    
+    
+  }else {
+    res.status (404)
+    throw new error ('user not found')
+  }
+}
+
+const progressSet = async (req, res) => {
+  try {
+    const {trackingId}  = req.params
+    console.log(trackingId)
+
+    const set = await User.findOne({trackingId })
+    console.log(set)
+    if (set) {
+      res.status(200).json({
+        success: true,
+        message: 'progress set',
+        data: { progress},
+      })
+  
+    } 
+  } catch (error) {
+    console.log(error)  
+  }
+}
+
+export { shippingDetails, shippinginfo, progressSet } 

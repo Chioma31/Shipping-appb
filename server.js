@@ -22,6 +22,6 @@ app.use(bodyParser.json())
 app.use ('/api/users', users)
 app.use ('/api/admin', admin)
 
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5001
 
 app.listen(port, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${port}`))  
