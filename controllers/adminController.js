@@ -132,7 +132,7 @@ const progress = async (req, res) => {
   .then(result => {
     res.status(200).json({
       message: "Updated successfully",
-      data: result
+      data: User
     })
   })
   .catch(error => {

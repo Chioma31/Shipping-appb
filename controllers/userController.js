@@ -105,7 +105,7 @@ const progressSet = async (req, res) => {
       res.status(200).json({
         success: true,
         message: 'progress set',
-        data: { progress},
+        data: set,
       })
   
     } 
